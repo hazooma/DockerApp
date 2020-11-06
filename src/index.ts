@@ -12,7 +12,7 @@ export async function init() {
     logger.info('Starting HTTP server')
 
     const db = new MySql({
-      database: 'movies_reviews',
+      database: process.env.MYSQL_DATABASE,
       host: process.env.DB_HOST,
       port: Number(process.env.DB_PORT) || 3306,
       user: process.env.DB_USER,
@@ -34,6 +34,7 @@ export async function init() {
     registerProcessEvents(logger, app, db, health)
 
     logger.info(`Application running on port: ${port}`)
+    return app
   } catch (e) {
     logger.error(e, 'An error occurred while initializing application.')
   }
@@ -74,4 +75,5 @@ function registerProcessEvents(
   })
 }
 
-init()
+const app = init()
+export default app
