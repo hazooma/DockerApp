@@ -1,0 +1,24 @@
+version: '2.1'
+services:
+  app:
+    build: .
+    command: npm run start:dev
+    env_file:
+      .env  
+    ports:
+      - "8080:8080"
+      - "5858:5858"
+    links:
+      - mysql
+    volumes:
+      - .:/app/
+    network_mode: bridge
+  mysql:
+    image: mysql:5.6
+    env_file:
+      .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db-scripts:/docker-entrypoint-initdb.d
+    network_mode: bridge
