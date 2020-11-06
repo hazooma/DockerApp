@@ -3,7 +3,7 @@ import * as bodyParser from 'koa-bodyparser'
 import * as Router from 'koa-router'
 import { ServiceContainer } from '../../container'
 import * as middleware from '../middlewares'
-import { MovieController} from './controller'
+import { MovieController } from './controller'
 import * as validators from './validators'
 
 export function init(server: Koa, container: ServiceContainer) {

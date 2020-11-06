@@ -1,4 +1,4 @@
-import {  Review } from '../entities'
+import { Review } from '../entities'
 import { NotFoundError, ValidationError } from '../errors'
 import { MySql } from '../lib/database'
 
@@ -10,7 +10,7 @@ export class ReviewRepository {
     this.db = db
   }
 
-  public async find( id: number): Promise<Review> {
+  public async find(id: number): Promise<Review> {
     const conn = await this.db.getConnection()
     const row = await conn
       .select()
@@ -26,13 +26,10 @@ export class ReviewRepository {
   }
   public async findAll(): Promise<Review[]> {
     const conn = await this.db.getConnection()
-    const row = await conn
-      .select().from(this.TABLE)
+    const row = await conn.select().from(this.TABLE)
 
-    return row.map(r=> this.transform(r))
+    return row.map(r => this.transform(r))
   }
-  
-
 
   public async insert(review: Review): Promise<Review> {
     review.created = new Date()
@@ -46,25 +43,20 @@ export class ReviewRepository {
         updated: review.updated,
         movie_id: review.movie_id
       })
-  
+
       review.id = result[0]
-  
+
       return review
-      
-    } catch (error) {   
-        throw new ValidationError(`Error Creating this Review !`, error)
+    } catch (error) {
+      throw new ValidationError(`Error Creating this Review !`, error)
     }
-    
   }
-
-
-
 
   private transform(row: any): Review {
     return {
       id: row.id,
       content: row.content,
-      movie_id:row.movie_id,
+      movie_id: row.movie_id,
       created: row.created,
       updated: row.updated
     }

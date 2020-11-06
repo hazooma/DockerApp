@@ -3,11 +3,9 @@ import { ReviewRepository } from '../repositories'
 
 export class ReviewsManager {
   private repo: ReviewRepository
- 
 
   constructor(repo: ReviewRepository) {
     this.repo = repo
-    
   }
 
   public async find(id: number): Promise<Review> {
@@ -18,10 +16,7 @@ export class ReviewsManager {
     return this.repo.findAll()
   }
 
-
   public async create(review: Review): Promise<Review> {
     return this.repo.insert(review)
   }
-
-
 }

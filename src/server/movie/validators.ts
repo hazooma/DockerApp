@@ -4,10 +4,7 @@ export const createMovie: Joi.SchemaMap = {
   name: Joi.string()
     .trim()
     .required(),
-    description: Joi.string()
+  description: Joi.string()
     .trim()
-    .required(),
-   
+    .required()
 }
-
-

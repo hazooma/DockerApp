@@ -6,8 +6,8 @@ import { ServiceContainer } from '../container'
 import { AppError } from '../errors'
 import * as health from './health'
 import * as middlewares from './middlewares'
-import * as task from './review'
 import * as user from './movie'
+import * as task from './review'
 
 export class AppServer {
   private app: Koa

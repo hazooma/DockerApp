@@ -46,8 +46,6 @@ export class FieldValidationError extends AppError {
   }
 }
 
-
-
 export interface FieldError {
   message: string
   type: string

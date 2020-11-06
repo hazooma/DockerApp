@@ -1,2 +1,2 @@
-export { ReviewsManager} from './review-manager'
+export { ReviewsManager } from './review-manager'
 export { MovieManager } from './movie-manager'

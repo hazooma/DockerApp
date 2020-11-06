@@ -1,8 +1,7 @@
 import { Movie, Review } from '../entities'
 import { NotFoundError, ValidationError } from '../errors'
 import { MySql } from '../lib/database'
-import  {fetchMovieDetail}  from '../services/OMDb'
-
+import { fetchMovieDetail } from '../services/OMDb'
 
 export class MovieRepository {
   private readonly TABLE: string = 'movies'
@@ -12,17 +11,15 @@ export class MovieRepository {
     this.db = db
   }
 
-  
   public async findMovieReviews(id: number): Promise<Review[]> {
     const conn = await this.db.getConnection()
     const results = await conn
       .select()
       .from('reviews')
       .where({ movie_id: id })
-      .orderBy('updated', 'DESC') 
-    return results;
+      .orderBy('updated', 'DESC')
+    return results
   }
-
 
   public async findById(id: number): Promise<Movie> {
     const conn = await this.db.getConnection()
@@ -42,7 +39,6 @@ export class MovieRepository {
     const rows = await conn.table(this.TABLE)
     return rows.map(r => this.transform(r))
   }
-  
 
   public async insert(movie: Movie): Promise<Movie> {
     movie.created = new Date()
@@ -53,10 +49,11 @@ export class MovieRepository {
     try {
       const movieInfo = await fetchMovieDetail(movie.name)
       if (!movieInfo) {
-        throw new NotFoundError(`Unknown! Movie ${movie.name} Not Found in our library`)
-      
+        throw new NotFoundError(
+          `Unknown! Movie ${movie.name} Not Found in our library`
+        )
       }
-      
+
       const result = await conn.table(this.TABLE).insert({
         name: movie.name,
         description: movie.description,
@@ -81,8 +78,8 @@ export class MovieRepository {
   private transform(row: any): Movie {
     return {
       id: row.id,
-      name:row.name,
-      description:row.description,
+      name: row.name,
+      description: row.description,
       genre: row.genre,
       director: row.director,
       created: row.created,

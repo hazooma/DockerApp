@@ -1,33 +1,33 @@
-import * as Promise from "bluebird";
-import * as request from "request-promise";
+import * as Promise from 'bluebird'
+import * as request from 'request-promise'
 
 const rejectApiKey: () => Promise<any> = () =>
-  Promise.reject(new Error("Missing API key"));
+  Promise.reject(new Error('Missing API key'))
 
 const omdbApi = ({ apiKey }: { apiKey: string }) => {
   if (!apiKey) {
-    throw new Error("Missing apiKey");
+    throw new Error('Missing apiKey')
   }
 
   function _request(args: any) {
     return request
       .defaults({
         uri: `http://www.omdbapi.com/`,
-        json: true,
+        json: true
       })(args)
-      .promise();
+      .promise()
   }
 
   return {
     get(url: string, qs: any = {}): Promise<any> {
       if (!apiKey) {
-        return rejectApiKey();
+        return rejectApiKey()
       }
 
-      qs.apikey = apiKey;
-      return _request({ url, method: "GET", qs });
-    },
-  };
-};
+      qs.apikey = apiKey
+      return _request({ url, method: 'GET', qs })
+    }
+  }
+}
 
-export default omdbApi;
+export default omdbApi

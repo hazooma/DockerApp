@@ -1,7 +1,7 @@
 import { Logger } from 'pino'
 import { MySql } from './lib/database'
 import { HealthMonitor } from './lib/health'
-import { ReviewsManager , MovieManager } from './managers'
+import { MovieManager, ReviewsManager } from './managers'
 import { MovieRepository, ReviewRepository } from './repositories'
 
 export interface ServiceContainer {

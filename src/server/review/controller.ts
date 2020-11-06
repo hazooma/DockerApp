@@ -15,13 +15,13 @@ export class ReviewController {
     ctx.body = new ReviewModel(review)
     ctx.status = 200
   }
-  
+
   public async getAll(ctx: Context) {
     const review = await this.manager.findAll()
     ctx.body = review
     ctx.status = 200
   }
-  
+
   public async create(ctx: Context) {
     const review: Review = ctx.request.body
 
@@ -30,5 +30,4 @@ export class ReviewController {
     ctx.status = 201
     ctx.set('location', `/api/reviews/${newReview.id}`)
   }
-
 }

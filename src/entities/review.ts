@@ -5,5 +5,3 @@ export interface Review {
   created: Date
   updated: Date
 }
-
-

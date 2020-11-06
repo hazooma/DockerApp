@@ -10,23 +10,15 @@ export function init(server: Koa, container: ServiceContainer) {
   const router = new Router({ prefix: '/api/reviews' })
   const controller = new ReviewController(container.managers.review)
 
-  router.get(
-    '/:id',
-    controller.get.bind(controller)
-  )
+  router.get('/:id', controller.get.bind(controller))
 
-  router.get(
-    '/',
-    controller.getAll.bind(controller)
-  )
+  router.get('/', controller.getAll.bind(controller))
   router.post(
     '/',
     bodyParser(),
     middleware.validate({ request: { body: validators.createReview } }),
     controller.create.bind(controller)
   )
-
-
 
   server.use(router.routes())
 }

@@ -1,7 +1,7 @@
 import { Context } from 'koa'
 import { Movie } from '../../entities'
 import { MovieManager } from '../../managers'
-import { CreateMovie,MovieModel } from './model'
+import { CreateMovie, MovieModel } from './model'
 
 export class MovieController {
   private manager: MovieManager
@@ -19,7 +19,7 @@ export class MovieController {
   }
 
   public async getAll(ctx: Context) {
-    const movies = await this.manager.getAll();
+    const movies = await this.manager.getAll()
     ctx.body = movies
     ctx.status = 200
   }
@@ -31,8 +31,8 @@ export class MovieController {
   }
 
   public async getMovieReviews(ctx: Context) {
-    console.log("    TEST  ");
-    
+    console.log('    TEST  ')
+
     const reviews = await this.manager.findMovieReviews(ctx.params.id)
     ctx.body = reviews
     ctx.status = 200
