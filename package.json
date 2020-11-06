@@ -1,11 +1,6 @@
 {
   "name": "typescript-node",
   "author": "Hazems",
-  "keywords": [
-    "typescript",
-    "nodejs",
-    "backend"
-  ],
   "scripts": {
     "build": "rm -rf dist && tsc",
     "build:watch": "rm -rf dist && tsc -w",
