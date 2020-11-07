@@ -2,7 +2,7 @@ version: '2.1'
 services:
   app:
     build: .
-    command: npm run start:dev
+    command: npm start
     env_file:
       .env  
     ports:
@@ -10,8 +10,6 @@ services:
       - "5858:5858"
     links:
       - mysql
-    volumes:
-      - .:/app/
     network_mode: bridge
   mysql:
     image: mysql:5.6
