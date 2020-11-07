@@ -6,8 +6,8 @@ import { ServiceContainer } from '../container'
 import { AppError } from '../errors'
 import * as health from './health'
 import * as middlewares from './middlewares'
-import * as user from './movie'
-import * as task from './review'
+import * as movie from "./movie";
+import * as review from "./review";
 
 export class AppServer {
   private app: Koa
@@ -75,8 +75,8 @@ export function createServer(container: ServiceContainer): AppServer {
 
   // Register routes
   health.init(app, container)
-  user.init(app, container)
-  task.init(app, container)
+  movie.init(app, container);
+  review.init(app, container);
 
   return appSrv
 }
