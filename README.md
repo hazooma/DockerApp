@@ -13,11 +13,7 @@
 
 ## Useful npm commands
 
-* *npm run build* - Transpile TypeScript code
 * *npm run clean* - Remove dist, node_modules, coverage folders
-* *npm run coverage* - Run NYC coverage
 * *npm run lint* - Lint your TypeScript code
 * *npm run start:dev* - Run application in dev mode (debug & watch). Debug mode is running on port 5858 (open `chrome://inspect/#devices`).
 * *npm run test* - Run unit tests
-* *npm run test:integration* - Run integration tests
-* *npm run test:all* - Run Unit and Integration tests
